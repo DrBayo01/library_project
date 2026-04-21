@@ -34,3 +34,21 @@ class BookViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(book)
         return Response(serializer.data)
+    
+    @action(detail=True, methods=['post'], url_path='finish')
+    def finish(self, request, pk=None):
+        book = self.get_object()
+
+        if book.status != Book.Status.READING:
+            return Response(
+                {"detail": f"No puedes terminar un libro en estado '{book.get_status_display()}'."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        book.status=Book.Status.FINISHED
+        book.finished_at = timezone.now()
+        book.save(update_fields=['status', 'finished_at'])
+
+        serializer = self.get_serializer(book)
+        print(serializer)
+        return Response(serializer.data)
