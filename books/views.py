@@ -20,7 +20,7 @@ class BookViewSet(viewsets.ModelViewSet):
 
         book.status=new_status
         setattr(book, date_field, timezone.now())
-        book.save(update_fields=['status', f'{date_field}'])
+        book.save(update_fields=['status', date_field])
         serializer = self.get_serializer(book)
         return Response(serializer.data)
 
