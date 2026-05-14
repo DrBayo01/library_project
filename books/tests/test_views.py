@@ -57,3 +57,29 @@ class TestBookIsolation:
     def test_user_cannot_access_other_book(self, auth_client, second_book):
         response = auth_client.get(f"/api/books/{second_book.id}/")
         assert response.status_code == 404
+
+
+class TestStartAction:
+
+    def cannot_start_assert(self, status, auth_client, book):
+        book.status = status
+        book.save()
+
+        response = auth_client.post(f"/api/books/{book.id}/start/")
+        assert response.status_code == 400
+
+    def test_start_pending_book(self, auth_client, book):
+        response = auth_client.post(f"/api/books/{book.id}/start/")
+        assert response.status_code == 200
+        assert response.data["status"] == "reading"
+        assert response.data["started_at"] is not None
+
+    def test_cannot_start_already_reading(self, auth_client, book):
+        self.cannot_start_assert(Book.Status.READING, auth_client, book)
+
+    def test_cannot_start_finished_book(self, auth_client, book):
+        self.cannot_start_assert(Book.Status.FINISHED, auth_client, book)
+
+    def test_cannot_start_other_users_book(self, auth_client, second_book):
+        response = auth_client.post(f"/api/books/{second_book.id}/start/")
+        assert response.status_code == 404
