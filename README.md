@@ -26,14 +26,12 @@ API REST de biblioteca personal construida con Django y Django REST Framework.
 
 ## Endpoints principales
 
-| Método    | Endpoint            | Descripción                    |
-| --------- | ------------------- | ------------------------------ |
-| GET       | /books/             | Listar todos tus libros        |
-| POST      | /books/             | Añadir un libro                |
-| PUT/PATCH | /books/{id}/        | Editar un libro                |
-| DELETE    | /books/{id}/        | Eliminar un libro              |
-| POST      | /books/{id}/start/  | Marcar libro como "en lectura" |
-| POST      | /books/{id}/finish/ | Marcar libro como "terminado"  |
+| Método    | Endpoint     | Descripción             |
+| --------- | ------------ | ----------------------- |
+| GET       | /books/      | Listar todos tus libros |
+| POST      | /books/      | Añadir un libro         |
+| PUT/PATCH | /books/{id}/ | Editar un libro         |
+| DELETE    | /books/{id}/ | Eliminar un libro       |
 
 ## Correr tests
 
@@ -48,3 +46,4 @@ pytest
 - [ ] Estadísticas de lectura (libros terminados, promedio de días por libro)
 - [ ] Autenticación JWT
 - [ ] Documentación de la API con Swagger/OpenAPI
+- [ ] Posterior desarrollo de frontend
