@@ -6,4 +6,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("books.urls")),
     path("api/token/", obtain_auth_token),
+    path("api-auth", include("rest_framework.urls", namespace="rest_framework")),
 ]

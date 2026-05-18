@@ -39,8 +39,10 @@ class Book(models.Model):
             self.started_at = None
             self.finished_at = None
         elif new_status == Book.Status.READING:
-            self.started_at = timezone.now()
-            self.finished_at = None
+            if self.finished_at:
+                self.finished_at = None
+            else:
+                self.started_at = timezone.now()
         elif new_status == Book.Status.FINISHED:
             if not self.started_at:
                 self.started_at = timezone.now()
