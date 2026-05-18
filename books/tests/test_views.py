@@ -57,3 +57,30 @@ class TestBookIsolation:
     def test_user_cannot_access_other_book(self, auth_client, second_book):
         response = auth_client.get(f"/api/books/{second_book.id}/")
         assert response.status_code == 404
+
+
+class TestBookOwnerAssign:
+    def test_owner_is_set_automatically(self, auth_client, user):
+        response = auth_client.post(
+            "/api/books/",
+            {
+                "title": "El Hobbit",
+                "author": "JRR Tolkien",
+            },
+        )
+        assert response.status_code == 201
+        book = Book.objects.get(id=response.data["id"])
+        assert book.owner == user
+
+    def test_auth_user_cannot_set_owner_manually(self, auth_client, user, second_user):
+        response = auth_client.post(
+            "/api/books/",
+            {
+                "title": "El Hobbit",
+                "author": "JRR Tolkien",
+                "owner": second_user.id,
+            },
+        )
+        assert response.status_code == 201
+        book = Book.objects.get(id=response.data["id"])
+        assert book.owner == user
