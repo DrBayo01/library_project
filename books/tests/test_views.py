@@ -84,3 +84,47 @@ class TestBookOwnerAssign:
         assert response.status_code == 201
         book = Book.objects.get(id=response.data["id"])
         assert book.owner == user
+
+
+class TestStatusChange:
+    def test_pending_to_reading_assigns_started_at(self, auth_client, book):
+        response = auth_client.patch(f"/api/books/{book.id}/", {"status": "reading"})
+        assert response.status_code == 200
+        assert response.data["status"] == "reading"
+        assert response.data["started_at"] is not None
+        assert response.data["finished_at"] is None
+
+    def test_reading_to_finished_assigns_finished_at(self, auth_client, book):
+        book.change_status(Book.Status.READING)
+        response = auth_client.patch(f"/api/books/{book.id}/", {"status": "finished"})
+        assert response.status_code == 200
+        assert response.data["status"] == "finished"
+        assert response.data["started_at"] is not None
+        assert response.data["finished_at"] is not None
+
+    def test_finished_to_reading_resets_finished_at(self, auth_client, book):
+        book.change_status(Book.Status.FINISHED)
+        response = auth_client.patch(f"/api/books/{book.id}/", {"status": "reading"})
+        assert response.status_code == 200
+        assert response.data["status"] == "reading"
+        assert response.data["started_at"] is not None
+        assert response.data["finished_at"] is None
+
+    def test_change_any_status_to_pending_clears_dates(self, auth_client, book):
+        book.change_status(Book.Status.READING)
+        response = auth_client.patch(f"/api/books/{book.id}/", {"status": "pending"})
+        assert response.status_code == 200
+        assert response.data["status"] == "pending"
+        assert response.data["started_at"] is None
+        assert response.data["finished_at"] is None
+
+    def test_same_status_changes_nothing(self, auth_client, book):
+        response = auth_client.patch(f"/api/books/{book.id}/", {"status": "pending"})
+        assert response.status_code == 200
+        assert response.data["started_at"] is None
+
+    def test_cannot_change_other_users_book_status(self, auth_client, second_book):
+        response = auth_client.patch(
+            f"/api/books/{second_book.id}/", {"status": "reading"}
+        )
+        assert response.status_code == 404
