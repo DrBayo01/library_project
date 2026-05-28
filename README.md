@@ -41,7 +41,7 @@ pytest
 
 - [ ] Soporte Docker
 - [ ] Cobertura completa de tests
-- [ ] Filtros por estado (`GET /books/?status=reading`)
+- [x] Filtros por estado (`GET /books/?status=reading`)
 - [ ] Notas y anotaciones por libro
 - [ ] Estadísticas de lectura (libros terminados, promedio de días por libro)
 - [ ] Autenticación JWT

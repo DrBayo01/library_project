@@ -5,11 +5,14 @@ from .serializers import BookSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.utils import timezone
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class BookViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = BookSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["status"]
 
     def get_queryset(self):
         user = self.request.user

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework.authtoken",
+    "django_filters",
     "books",
 ]
 
@@ -120,11 +121,12 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",  # para pruebas, desactivar en "produccion" (de: yo del pasado)
     ],
-    "DEFAUTL_PERMISSION_CLASSES": [
+    "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
 }
