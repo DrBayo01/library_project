@@ -128,3 +128,19 @@ class TestStatusChange:
             f"/api/books/{second_book.id}/", {"status": "reading"}
         )
         assert response.status_code == 404
+
+
+class TestBookFilter:
+    def test_filter_by_status(self, auth_client, book):
+        response = auth_client.get("/api/books/?status=pending")
+        assert response.status_code == 200
+        assert len(response.data) == 1
+
+    def test_filter_by_non_existing_status(self, auth_client, book):
+        response = auth_client.get("/api/books/?status=literally_non_existing_status")
+        assert response.status_code == 400
+
+    def test_filter_by_status_with_no_books(self, auth_client, book):
+        response = auth_client.get("/api/books/?status=finished")
+        assert response.status_code == 200
+        assert len(response.data) == 0
