@@ -26,5 +26,9 @@ class BookSerializer(serializers.ModelSerializer):
             "finished_at",
         ]
 
+    def create(self, validated_data):
+        validated_data["status"] = "pending"
+        return super().create(validated_data)
+
     def get_days_reading(self, obj):
         return obj.days_reading()
