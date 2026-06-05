@@ -63,7 +63,7 @@ Llevo un buen tiempo leyendo, y siempre he llevado una lista de mis lecturas en 
 
 Este proyecto lo hice pensando en eso para uso personal, y he decidido que cualquiera que necesite algo similar pueda usarlo y/o mejorarlo.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 
 
@@ -77,7 +77,7 @@ Este proyecto lo hice pensando en eso para uso personal, y he decidido que cualq
 * [![Pytest][Pytest]][Pytest-url]
 * [![GitHub Actions][GitHubActions]][GitHubActions-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 
 
@@ -154,7 +154,7 @@ Asegurate de tener instalado:
 9. Log in con el superusuario dentro del panel de DRF
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 
 
@@ -171,9 +171,9 @@ Asegurate de tener instalado:
 - [ ] Documentación de la API con Swagger/OpenAPI
 - [ ] Posterior desarrollo de frontend
 
-Consulta [open issues](https://github.com/github_username/repo_name/issues) para ver una lista completa de las funciones propuestas (y los problemas conocidos).
+Consulta [open issues](https://github.com/DrBayo01/library_project/issues) para ver una lista completa de las funciones propuestas (y los problemas conocidos).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 
 
@@ -190,7 +190,7 @@ Si tienes alguna sugerencia que pueda mejorar este proyecto, por favor haz un fo
 4. Sube los cambios a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
 
 
