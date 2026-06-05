@@ -110,9 +110,9 @@ Asegurate de tener instalado:
    ```sh
    docker compose exec backend python manage.py createsuperuser
    ```
-5. Accede al proyecto
+5. Accede a la api del proyecto
    ```http
-   http://localhost:8000
+   http://localhost:8000/api/
    ```
 6. Log in con el superusuario dentro del panel de DRF
 
@@ -120,38 +120,42 @@ Asegurate de tener instalado:
 
 1. Clona el repositorio
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/DrBayo01/library_project.git
    ```
-2. Crea un ambiente virtual
+2. Ve al directorio
+   ```sh
+   cd library_project
+   ```
+3. Crea un ambiente virtual
    ```sh
    python -m venv venv
    ```
-3. Activa el ambiente
+4. Activa el ambiente
    ```sh
    source venv/bin/activate #Linux/Mac
    venv/Script/Activate.ps1 #Windows
    ```
-4. Instala las dependencias del proyecto
+5. Instala las dependencias del proyecto
    ```sh
    pip install -r requirements.txt
    ```
-5. Migra la base de datos
+6. Migra la base de datos
    ```sh
    python manage.py migrate
    ```
-6. Crea un superusuario de Django (con este podrás interactuar con la API)
+7. Crea un superusuario de Django (con este podrás interactuar con la API)
    ```sh
    python manage.py createsuperuser
    ```
-7. Ejecuta el servidor
+8. Ejecuta el servidor
    ```sh
    python manage.py runserver
    ```
-8. Accede al proyecto
+9. Accede a la api del proyecto
    ```http
-   http://localhost:8000
+   http://localhost:8000/api/
    ```
-9. Log in con el superusuario dentro del panel de DRF
+10. Log in con el superusuario dentro del panel de DRF
 
 
 <p align="right">(<a href="#readme-top">volver arriba</a>)</p>
