@@ -46,8 +46,7 @@
       <a href="#primeros-pasos">Primeros Pasos</a>
       <ul>
         <li><a href="#requisitos">Requisitos</a></li>
-        <li><a href="#instalación-con-docker">Instalación con Docker</a></li>
-        <li><a href="#instalación-local">Instalación local</a></li>
+        <li><a href="#instalación">Instalación</a></li>
       </ul>
     </li>
     <li><a href="#roadmap-del-proyecto">Roadmap del proyecto</a></li>
@@ -92,7 +91,7 @@ Asegurate de tener instalado:
 * Docker y Docker Compose
 * Git
 
-### Instalación con Docker
+### Instalación
 
 1. Clona el repositorio
    ```sh
@@ -102,61 +101,31 @@ Asegurate de tener instalado:
    ```sh
    cd library_project
    ```
-3. Levanta el contenedor en segundo plano
+3. Renombra el archivo .env.example a .env
+   ```sh
+   cp .env.example .env
+   ```
+4. Genera una nueva `SECRET_KEY` para Django ejecutando el siguiente comando en la terminal
+   ```sh
+   python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+   ```
+5. Abre el archivo .env previamente creado y pega la clave generada en la variable `SECRET_KEY`
+   ```sh
+   SECRET_KEY=pega_tu_clave_por_acá
+   ```
+6. Levanta el contenedor en segundo plano
    ```sh
    docker compose up --build -d
    ```
-4. Crea un superusuario de Django (con este podrás interactuar con la API)
+7. Crea un superusuario de Django (con este podrás interactuar con la API)
    ```sh
    docker compose exec backend python manage.py createsuperuser
    ```
-5. Accede a la api del proyecto
+8. Accede a la api del proyecto
    ```http
    http://localhost:8000/api/
    ```
-6. Log in con el superusuario dentro del panel de DRF
-
-### Instalación local
-
-1. Clona el repositorio
-   ```sh
-   git clone https://github.com/DrBayo01/library_project.git
-   ```
-2. Ve al directorio
-   ```sh
-   cd library_project
-   ```
-3. Crea un ambiente virtual
-   ```sh
-   python -m venv venv
-   ```
-4. Activa el ambiente
-   ```sh
-   source venv/bin/activate #Linux/Mac
-   venv/Script/Activate.ps1 #Windows
-   ```
-5. Instala las dependencias del proyecto
-   ```sh
-   pip install -r requirements.txt
-   ```
-6. Migra la base de datos
-   ```sh
-   python manage.py migrate
-   ```
-7. Crea un superusuario de Django (con este podrás interactuar con la API)
-   ```sh
-   python manage.py createsuperuser
-   ```
-8. Ejecuta el servidor
-   ```sh
-   python manage.py runserver
-   ```
-9. Accede a la api del proyecto
-   ```http
-   http://localhost:8000/api/
-   ```
-10. Log in con el superusuario dentro del panel de DRF
-
+9. Log in con el superusuario dentro del panel de DRF
 
 <p align="right">(<a href="#readme-top">volver arriba</a>)</p>
 
@@ -164,9 +133,9 @@ Asegurate de tener instalado:
 
 ## Roadmap del proyecto
 
-- [ ] Soporte Docker
+- [x] Soporte Docker
   - [x] Implementar contenedores para backend
-  - [ ] Implementar PostgreSQL en el proyecto
+  - [x] Implementar PostgreSQL en el proyecto
 - [ ] Cobertura completa de tests
 - [x] Filtros por estado (`GET /books/?status=reading`)
 - [ ] Notas y anotaciones por libro
