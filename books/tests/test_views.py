@@ -144,3 +144,7 @@ class TestBookFilter:
         response = auth_client.get("/api/books/?status=finished")
         assert response.status_code == 200
         assert len(response.data) == 0
+
+class TestCiValidation:
+    def test_ci_check_validation():
+        assert 1 == 2
