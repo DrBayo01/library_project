@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+  push:
+    branches:
+      - main
+
 jobs:
   test:
 
@@ -19,11 +23,8 @@ jobs:
         run: |
           cp .env.example .env
 
-      - name: Build containers
-        run: docker compose build
-
       - name: Start containers
-        run: docker compose up -d
+        run: docker compose up -d --build
 
       - name: Run tests
         run: docker compose exec -T backend pytest
